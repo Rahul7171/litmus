@@ -20,7 +20,7 @@ The IAM roles for service accounts feature provides the following benefits:
 
 #### Step 1: Create an IAM OIDC provider for your cluster
 
-We need to perform this once for a cluster. We’re going to follow the [AWS documentation to setup an OIDC provider](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) with eksctl.
+We need to perform this once for a cluster. We’re going to follow the [AWS documentation to set up an OIDC provider](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) with eksctl.
 
 
 **Check whether you have an existing IAM OIDC provider for your cluster:** To check this you can follow the given instruction.
@@ -46,7 +46,7 @@ aws iam list-open-id-connect-providers | grep <EXAMPLED539D4633E53DE1B716D3041E>
 
 Replace `<D054E55B6947B1A7B3F200297789662C>` (including `<>`) with the value returned from the previous command.
 
-So now here we don’t have an IAM OIDC identity provider, So we need to create it for your cluster with the following command. Replace `<litmus-demo>` (`including <>`) with your own value.
+So now here we don’t have an IAM OIDC identity provider, So we need to create it for your cluster with the following command. Replace `<litmus-demo>` (`including <>`) with your value.
 
 ```bash
 root@demo$ eksctl utils associate-iam-oidc-provider --cluster litmus-demo --approve
@@ -107,7 +107,7 @@ Now we have successfully enabled the experiment service accounts to access AWS r
 
 ## Configure the Experiment CR.
 
-Since we have already configured the IAM for the experiment service account we don’t need to create secret and mount it with experiment CR which is enabled by default. To remove the secret mount we have to remove the following lines from experiment YAML. 
+Since we have already configured the IAM for the experiment service account we don’t need to create a secret and mount it with experiment CR which is enabled by default. To remove the secret mount we have to remove the following lines from experiment YAML. 
 
 ```yaml
 secrets:
